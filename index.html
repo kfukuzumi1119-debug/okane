@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="google-adsense-account" content="ca-pub-3965836277553422">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3965836277553422" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>今日使っていいお金がわかる｜給料日までの予算と引き落としカレンダー｜お金ナビ</title>
+<meta name="description" content="手取り・給料日・固定費を入れるだけで、給料日までの「今日使っていい額」を毎日計算。家賃やカードの引き落とし日が近づくとひと目でわかるカレンダーつき。家計簿をつけなくても、使った額を入れるだけ。無料・登録不要、データはこの端末の中だけ。">
+<meta property="og:title" content="お金ナビ｜今日使っていい額と引き落としカレンダー">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#24543f">
+<link rel="canonical" href="https://okane.hibitool.com/">
+<meta property="og:url" content="https://okane.hibitool.com/">
+<meta property="og:image" content="https://okane.hibitool.com/og-image.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="お金ナビ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1ea;--paper:#fffdf7;--ink:#1f2b25;--sub:#5f6b63;--line:#d8d4c6;--green:#24543f;--gold:#c89a1c;--red:#b8412f;--blue:#2d6fa8}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Maru Gothic",system-ui,sans-serif;font-weight:500;line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.top{background:var(--green);color:#fff}
+header.top .wrap{display:flex;align-items:center;gap:10px;padding-top:12px;padding-bottom:12px}
+header.top svg{width:36px;height:36px;flex:none}
+header.top h1{margin:0;font-size:20px;font-weight:900;letter-spacing:.04em;margin-right:auto}
+header.top .d{font-size:14px;opacity:.9}
+button{font:inherit;cursor:pointer}
+input,select{font:inherit;font-size:16px;color:var(--ink)}
+.btn{border:1px solid #a9b2a8;background:#fff;color:var(--ink);padding:7px 14px;border-radius:4px;font-size:14px}
+.btn.main{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.btn.sm{padding:3px 10px;font-size:13px}
+.btn.del{border:0;background:none;color:var(--red);text-decoration:underline;padding:2px 4px;font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin-top:16px}
+h2{font-size:17px;margin:0 0 10px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+h2 small{font-size:12px;color:var(--sub);font-weight:500}
+.lead{font-size:14px;color:var(--sub);margin:14px 0 0}
+/* 今日の額 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.hero > div{padding:16px 18px}
+.hero > div + div{border-left:1px solid var(--line)}
+.hero .k{font-size:13px;color:var(--sub)}
+.hero .v{font-size:40px;font-weight:900;line-height:1.15;letter-spacing:.01em}
+.hero .v small{font-size:18px;margin-right:2px}
+.hero .n{font-size:13px;color:var(--sub)}
+.hero .ok{color:var(--green)} .hero .ng{color:var(--red)}
+.bar{height:10px;background:#e7e3d6;margin-top:8px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--gold)}
+.bar i.over{background:var(--red)}
+.period{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;padding:10px 18px;border-top:1px solid var(--line);grid-column:1/-1;background:#faf8f1}
+.period b{font-size:16px}
+@media (max-width:560px){.hero{grid-template-columns:1fr}.hero > div + div{border-left:0;border-top:1px solid var(--line)}.hero .v{font-size:34px}}
+/* 入力 */
+.add{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.add input[type=number]{width:9em;padding:8px 10px;border:1px solid #a9b2a8;border-radius:4px;font-size:20px;font-weight:700}
+.add input[type=text]{flex:1 1 140px;padding:8px 10px;border:1px solid #a9b2a8;border-radius:4px}
+.cats{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.cats button{border:1px solid var(--line);background:#fff;padding:5px 10px;font-size:13px;border-radius:3px}
+.cats button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.list{list-style:none;margin:10px 0 0;padding:0}
+.list li{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:14px}
+.list li .a{margin-left:auto;font-weight:700;white-space:nowrap}
+.list li .c{font-size:12px;color:var(--sub);border:1px solid var(--line);padding:0 6px;border-radius:3px;white-space:nowrap}
+.empty{color:var(--sub);font-size:14px;padding:6px 0}
+/* 引き落とし */
+.debits{list-style:none;margin:0;padding:0}
+.debits li{display:grid;grid-template-columns:5.5em 6.5em 1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.debits li:first-child{border-top:0}
+.debits .left{font-weight:700;text-align:center;border-radius:3px;padding:1px 0;font-size:13px}
+.debits .soon .left{background:var(--red);color:#fff}
+.debits .near .left{background:#f3e2b5}
+.debits .pay .left{background:var(--green);color:#fff}
+.debits .amt{font-weight:700;text-align:right}
+.need{font-size:13px;color:var(--sub);margin-top:8px}
+.cal{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:8px}
+.cal th{font-size:12px;color:var(--sub);font-weight:500;padding:4px 0}
+.cal th:first-child{color:var(--red)}.cal th:last-child{color:var(--blue)}
+.cal td{vertical-align:top;height:58px;border-top:1px solid var(--line);padding:2px 3px;font-size:12px}
+.cal td .n{color:var(--sub)}
+.cal td.today{background:#eef3ec}
+.cal td.other{opacity:.3}
+.cal td.hol .n,.cal td.sun .n{color:var(--red)} .cal td.sat .n{color:var(--blue)}
+.cal .m{display:block;font-size:10px;line-height:1.35;padding:0 3px;margin-top:2px;border-radius:2px;background:#f3e2b5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal .m.p{background:var(--green);color:#fff}
+.calnav{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+/* グラフ */
+.chart svg{width:100%;height:auto;display:block}
+/* 設定 */
+.setup .row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px}
+@media (max-width:700px){.setup .row{grid-template-columns:1fr 1fr}}
+.setup label{font-size:12px;color:var(--sub);display:block}
+.setup input,.setup select{width:100%;padding:6px 8px;border:1px solid #a9b2a8;border-radius:4px;margin-top:2px;background:#fff}
+.fixed{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+.fixed th{font-size:12px;color:var(--sub);font-weight:500;text-align:left;padding:4px}
+.fixed td{border-top:1px solid var(--line);padding:4px}
+.fixed input,.fixed select{width:100%;padding:5px 6px;border:1px solid #c9cfc6;border-radius:3px;background:#fff;font-size:15px}
+.fixed td.x{width:3em;text-align:center}
+.sum{font-size:14px;margin-top:10px;padding:8px 10px;background:#faf8f1;border:1px solid var(--line)}
+.sum b{font-size:16px}
+.welcome{border:2px solid var(--green)}
+.hide{display:none!important}
+.small{font-size:12px;color:var(--sub)}
+.msg{font-size:13px;color:var(--green);margin-left:6px}
+section.read{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:4px 18px 12px;margin:20px 0}
+section.read dt{font-weight:700;margin-top:12px}
+section.read dd{margin:2px 0 0;color:var(--sub);font-size:14px}
+footer{padding:20px 0 40px;font-size:12px;color:var(--sub);text-align:center}
+footer a{color:var(--sub)}
+
+.pbox{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:6px 16px 14px;margin-top:16px}
+.pbox h2{margin:10px 0 4px}
+.pbox p{margin:4px 0;font-size:14px}
+.prow{display:flex;gap:8px 14px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:14px}
+.prow select{font:inherit;font-size:16px;padding:5px 8px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink)}
+.pbtn{font:inherit;font-size:14px;padding:8px 16px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);cursor:pointer}
+.pbtn.main{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.pmsg{color:var(--sub);font-size:13px!important;min-height:1em}
+.pios{font-size:13px;background:#fff6dc;border:1px solid #ecd9a0;padding:8px 12px;border-radius:4px;margin-top:10px}
+.hide{display:none!important}
+</style>
+<!--FAQ--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "「今日使っていい額」はどう計算していますか？", "acceptedAnswer": {"@type": "Answer", "text": "手取りから固定費と毎月の貯金を引いた「自由に使える額」から、給料日以降に使った額を引き、次の給料日までの残りの日数（今日を含む）で割っています。使いすぎた日があっても、翌日以降の額が自動で少し下がって調整されます。"}}, {"@type": "Question", "name": "家計簿のように細かくつける必要はありますか？", "acceptedAnswer": {"@type": "Answer", "text": "いりません。財布やカードで使った額をざっくり入れるだけで大丈夫です。固定費（家賃・スマホ・サブスク・カードの引き落としなど）は最初に1回登録すれば、毎月自動で計算に入ります。"}}, {"@type": "Question", "name": "引き落とし日が土日祝のときは？", "acceptedAnswer": {"@type": "Answer", "text": "多くの口座振替は次の平日に引き落とされるため、固定費ごとに「次の平日」「前の平日」「ずらさない」を選べます。給料日も同じように選べます。"}}, {"@type": "Question", "name": "データはどこに保存されますか？", "acceptedAnswer": {"@type": "Answer", "text": "この端末のブラウザの中だけです。サーバーには送らないので、ほかの人に見られることはありません。ブラウザのデータを消すと消えるため、ときどき「バックアップを保存」をおすすめします。"}}]}</script><!--/FAQ-->
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="21" fill="none" stroke="#f3c64b" stroke-width="5"/><path d="M24 21l8 11 8-11M23 33h18M23 40h18M32 32v14" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+  <h1>お金ナビ</h1><span class="d" id="today"></span>
+</div></header>
+
+<main class="wrap">
+  <p class="lead">給料日までの「今日使っていい額」と、近づいている引き落としがひと目でわかります。家計簿のように細かくつけなくても、使った額を入れるだけで毎日の予算が自動で変わります。</p>
+
+  <div class="card welcome hide" id="welcome">
+    <h2>はじめに、3つだけ入れてください</h2>
+    <p style="margin:0;font-size:14px">① 月の手取り　② 給料日　③ 家賃・スマホ・カードなどの固定費と引き落とし日。下の「設定」から入れられます。</p>
+  </div>
+
+  <div class="hero" id="hero"></div>
+
+  <div class="card">
+    <h2>使った額を入れる <small>今日の分</small></h2>
+    <div class="add">
+      <input type="number" id="amt" inputmode="numeric" min="0" placeholder="0" aria-label="金額"><span>円</span>
+      <input type="text" id="memo" placeholder="メモ（例：ランチ）" maxlength="30">
+      <button class="btn main" id="addBtn">追加</button>
+    </div>
+    <div class="cats" id="cats"></div>
+    <ul class="list" id="todayList"></ul>
+  </div>
+
+  <div class="card">
+    <h2>近い引き落とし <small>これから31日</small></h2>
+    <ul class="debits" id="debits"></ul>
+    <p class="need" id="need"></p>
+  </div>
+
+<section class="pbox" id="pushBox"><h2>通知</h2><p id="pushState"></p><div class="prow"><label>知らせる時刻 <select id="pushTime"><option value="1140">前日 19:00</option><option value="1200" selected>前日 20:00</option><option value="1260">前日 21:00</option><option value="1320">前日 22:00</option><option value="420">当日 7:00</option><option value="480">当日 8:00</option></select></label></div><div class="prow"><button class="pbtn main" id="pushOn">通知をオンにする</button><button class="pbtn" id="pushTest">テスト通知</button><button class="pbtn" id="pushOff">オフにする</button></div><p class="pmsg" id="pushMsg"></p><div class="pios hide" id="pushIos"><b>iPhone・iPad の場合</b>：Safari の共有ボタン（□に↑）→「ホーム画面に追加」で追加し、ホーム画面のアイコンから開くと通知をオンにできます（iOS 16.4 以降）。</div></section>
+  <div class="card">
+    <div class="calnav"><button class="btn sm" id="pm">‹</button><span id="calTitle"></span><button class="btn sm" id="nm">›</button></div>
+    <table class="cal" id="cal"></table>
+  </div>
+
+  <div class="card chart">
+    <h2>今期の使った額 <small>1日ごと（線は1日の予算の目安）</small></h2>
+    <div id="chart"></div>
+    <ul class="list" id="history"></ul>
+  </div>
+
+  <div class="card setup" id="setupCard">
+    <h2>設定 <small>変えるとすぐ保存されます</small><span style="margin-left:auto"><button class="btn sm" id="toggleSetup">開く</button></span></h2>
+    <div id="setup" class="hide">
+      <div class="row">
+        <div><label>月の手取り（円）<input type="number" id="income" inputmode="numeric" min="0"></label></div>
+        <div><label>給料日<select id="payday"></select></label></div>
+        <div><label>給料日が土日祝のとき<select id="payShift"><option value="before">前の平日</option><option value="after">次の平日</option><option value="none">ずらさない</option></select></label></div>
+        <div><label>毎月の貯金（円）<input type="number" id="saving" inputmode="numeric" min="0"></label></div>
+      </div>
+      <table class="fixed">
+        <thead><tr><th>固定費（引き落とし）</th><th style="width:7.5em">金額</th><th style="width:6em">引き落とし日</th><th style="width:6.5em">土日祝</th><th></th></tr></thead>
+        <tbody id="fixedRows"></tbody>
+      </table>
+      <div style="margin-top:8px"><button class="btn sm" id="addFixed">＋ 固定費を追加</button></div>
+      <div class="sum" id="sum"></div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button class="btn sm" id="exportBtn">バックアップを保存</button>
+        <label class="btn sm" style="margin:0">バックアップから戻す<input type="file" id="importFile" accept="application/json" class="hide"></label>
+        <span class="msg" id="bkMsg"></span>
+      </div>
+      <p class="small">データはこの端末のブラウザの中だけに保存され、どこにも送信しません。機種変更のときは「バックアップを保存」したファイルを新しい端末で読み込んでください。</p>
+    </div>
+  </div>
+
+  <section class="read">
+    <h2 style="margin-top:14px">よくある質問</h2>
+    <dl class="faq">
+      <dt>「今日使っていい額」はどう計算していますか？</dt>
+      <dd>手取りから固定費と毎月の貯金を引いた「自由に使える額」から、給料日以降に使った額を引き、次の給料日までの残りの日数（今日を含む）で割っています。使いすぎた日があっても、翌日以降の額が自動で少し下がって調整されます。</dd>
+      <dt>家計簿のように細かくつける必要はありますか？</dt>
+      <dd>いりません。財布やカードで使った額をざっくり入れるだけで大丈夫です。固定費（家賃・スマホ・サブスク・カードの引き落としなど）は最初に1回登録すれば、毎月自動で計算に入ります。</dd>
+      <dt>引き落とし日が土日祝のときは？</dt>
+      <dd>多くの口座振替は次の平日に引き落とされるため、固定費ごとに「次の平日」「前の平日」「ずらさない」を選べます。給料日も同じように選べます。</dd>
+      <dt>データはどこに保存されますか？</dt>
+      <dd>この端末のブラウザの中だけです。サーバーには送らないので、ほかの人に見られることはありません。ブラウザのデータを消すと消えるため、ときどき「バックアップを保存」をおすすめします。</dd>
+    </dl>
+  </section>
+</main>
+
+<footer><a href="https://hibitool.com/">日々のツール（hibitool.com）</a> ・ <a href="https://hibitool.com/privacy.html">プライバシーポリシー</a></footer>
+
+<script>
+const KEY="okane-data";
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const parse=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c);};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x;};
+const daysBetween=(a,b)=>Math.round((b-a)/864e5);
+const WD="日月火水木金土";
+const yen=n=>(n<0?"−":"")+"¥"+Math.abs(Math.round(n)).toLocaleString("ja-JP");
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const CATS=["食費","日用品","外食","交際","交通","趣味","衣服","医療","その他"];
+
+/* 祝日 */
+const HC={};
+function holidays(y){
+  if(HC[y]) return HC[y]; const h={};
+  const add=(m,d,n)=>{h[y+"-"+pad(m)+"-"+pad(d)]=n;};
+  const nthMon=(m,n)=>{const f=new Date(y,m-1,1).getDay();return 1+((8-f)%7)+(n-1)*7;};
+  const sp=Math.floor(20.8431+0.242194*(y-1980)-Math.floor((y-1980)/4)), au=Math.floor(23.2488+0.242194*(y-1980)-Math.floor((y-1980)/4));
+  add(1,1,"元日");add(1,nthMon(1,2),"成人の日");add(2,11,"建国記念の日");add(2,23,"天皇誕生日");add(3,sp,"春分の日");add(4,29,"昭和の日");
+  add(5,3,"憲法記念日");add(5,4,"みどりの日");add(5,5,"こどもの日");add(7,nthMon(7,3),"海の日");add(8,11,"山の日");add(9,nthMon(9,3),"敬老の日");
+  add(9,au,"秋分の日");add(10,nthMon(10,2),"スポーツの日");add(11,3,"文化の日");add(11,23,"勤労感謝の日");
+  for(let d=new Date(y,0,2);d.getFullYear()===y;d.setDate(d.getDate()+1)){const p=addDays(d,-1),n=addDays(d,1);if(!h[ymd(d)]&&d.getDay()!==0&&h[ymd(p)]&&h[ymd(n)])h[ymd(d)]="国民の休日";}
+  Object.keys(h).sort().forEach(k=>{const d=parse(k);if(d.getDay()===0){let s=new Date(d);do{s.setDate(s.getDate()+1);}while(h[ymd(s)]);h[ymd(s)]="振替休日";}});
+  return HC[y]=h;
+}
+const holName=d=>holidays(d.getFullYear())[ymd(d)]||null;
+const isBankOff=d=>d.getDay()===0||d.getDay()===6||!!holName(d)||(d.getMonth()===11&&d.getDate()===31)||(d.getMonth()===0&&d.getDate()<=3);
+// その月の d 日（月末をこえたら月末）を、土日祝なら前後の平日へ
+function monthDay(y,m,day,shift){
+  const last=new Date(y,m+1,0).getDate();
+  let d=new Date(y,m,Math.min(day,last));
+  if(shift==="before") while(isBankOff(d)) d=addDays(d,-1);
+  if(shift==="after") while(isBankOff(d)) d=addDays(d,1);
+  return d;
+}
+
+/* データ */
+let S={income:0,payday:25,payShift:"before",saving:0,fixed:[],spend:[]};
+try{const v=JSON.parse(localStorage.getItem(KEY)||"null");if(v) S=Object.assign(S,v);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} if(window.pushSync) pushSync();}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+
+function today(){const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate());}
+// 今期（直近の給料日〜次の給料日の前日）
+function period(t){
+  let start=null, end=null;
+  for(let k=-2;k<=2;k++){
+    const p=monthDay(t.getFullYear(),t.getMonth()+k,S.payday,S.payShift);
+    if(p<=t) start=p; else if(!end) end=p;
+  }
+  return {start, next:end, end:addDays(end,-1)};
+}
+const fixedTotal=()=>S.fixed.reduce((s,f)=>s+(+f.amount||0),0);
+const free=()=>(+S.income||0)-fixedTotal()-(+S.saving||0);
+function spentBetween(a,b){const A=ymd(a),B=ymd(b);return S.spend.filter(x=>x.date>=A&&x.date<=B).reduce((s,x)=>s+x.amount,0);}
+
+let cat="食費";
+function render(){
+  const t=today(), P=period(t);
+  $("today").textContent=(t.getMonth()+1)+"月"+t.getDate()+"日（"+WD[t.getDay()]+"）";
+  $("welcome").classList.toggle("hide",!!S.income);
+  const before=spentBetween(P.start,addDays(t,-1)), todaySpent=spentBetween(t,t);
+  const rest=daysBetween(t,P.end)+1;
+  const budgetLeft=free()-before;               // 今日を含めて残っている額
+  const allow=Math.max(0,budgetLeft/rest);       // 今日使っていい額
+  const todayLeft=allow-todaySpent;
+  const periodLeft=budgetLeft-todaySpent;
+  const usedPct=allow>0?Math.min(100,todaySpent/allow*100):(todaySpent>0?100:0);
+  $("hero").innerHTML=
+    '<div><div class="k">今日使っていい額</div><div class="v">'+yen(allow).replace("¥","<small>¥</small>")+'</div>'+
+    '<div class="n">'+(S.income? "残り"+rest+"日で割った額" : "設定を入れると計算します")+'</div></div>'+
+    '<div><div class="k">今日の残り</div><div class="v '+(todayLeft>=0?"ok":"ng")+'">'+yen(todayLeft).replace("¥","<small>¥</small>")+'</div>'+
+    '<div class="n">今日使った額 '+yen(todaySpent)+(todayLeft<0?"（使いすぎた分は明日から少しずつ調整）":"")+'</div>'+
+    '<div class="bar"><i class="'+(todayLeft<0?"over":"")+'" style="width:'+usedPct+'%"></i></div></div>'+
+    '<div class="period"><span>給料日まで <b>あと'+daysBetween(t,P.next)+'日</b>（'+(P.next.getMonth()+1)+'/'+P.next.getDate()+'）</span>'+
+    '<span>今期の残り <b class="'+(periodLeft<0?"ng":"")+'" style="color:'+(periodLeft<0?"var(--red)":"inherit")+'">'+yen(periodLeft)+'</b></span>'+
+    '<span>自由に使える額 '+yen(free())+' のうち '+yen(before+todaySpent)+' 使用</span></div>';
+  // 今日のリスト
+  const tl=S.spend.filter(x=>x.date===ymd(t));
+  $("todayList").innerHTML=tl.length?tl.map(x=>'<li><span class="c">'+esc(x.cat)+'</span><span>'+esc(x.memo||"")+'</span><span class="a">'+yen(x.amount)+'</span><button class="btn del" data-del="'+x.id+'">消す</button></li>').join(""):'<li class="empty">今日はまだ入力がありません。</li>';
+  renderDebits(t,P); renderCal(); renderChart(t,P);
+}
+function upcoming(from,days){
+  const out=[], to=addDays(from,days);
+  for(let k=-1;k<=2;k++){
+    S.fixed.forEach(f=>{ if(!f.day) return; const d=monthDay(from.getFullYear(),from.getMonth()+k,+f.day,f.shift||"after"); if(d>=from&&d<=to) out.push({d,name:f.name||"固定費",amount:+f.amount||0}); });
+    const p=monthDay(from.getFullYear(),from.getMonth()+k,S.payday,S.payShift); if(S.income&&p>=from&&p<=to) out.push({d:p,name:"給料日",amount:+S.income,pay:true});
+  }
+  return out.sort((a,b)=>a.d-b.d);
+}
+function renderDebits(t,P){
+  const list=upcoming(t,31);
+  $("debits").innerHTML=list.length?list.map(x=>{
+    const n=daysBetween(t,x.d), cls=x.pay?"pay":n<=3?"soon":n<=7?"near":"";
+    return '<li class="'+cls+'"><span class="left">'+(n===0?"今日":n===1?"明日":"あと"+n+"日")+'</span><span>'+(x.d.getMonth()+1)+'/'+x.d.getDate()+'（'+WD[x.d.getDay()]+'）</span><span>'+esc(x.name)+'</span><span class="amt">'+(x.pay?"+":"")+yen(x.amount)+'</span></li>';
+  }).join(""):'<li class="empty">固定費を登録すると、ここに引き落としが並びます。</li>';
+  const need=upcoming(t,daysBetween(t,P.next)-1).filter(x=>!x.pay).reduce((s,x)=>s+x.amount,0);
+  $("need").textContent=need?"次の給料日までに引き落とされる額："+yen(need)+"（口座に残しておく額の目安）":"";
+}
+let calY,calM;
+function renderCal(){
+  const t=today(); if(calY==null){calY=t.getFullYear();calM=t.getMonth();}
+  $("calTitle").textContent=calY+"年"+(calM+1)+"月";
+  const first=new Date(calY,calM,1), start=addDays(first,-first.getDay());
+  const ev=upcoming(start,42); const by={}; ev.forEach(x=>{(by[ymd(x.d)]=by[ymd(x.d)]||[]).push(x);});
+  let h="<tr>"+[..."日月火水木金土"].map(w=>"<th>"+w+"</th>").join("")+"</tr>";
+  for(let w=0;w<6;w++){
+    if(w>3&&addDays(start,w*7).getMonth()!==calM) break;
+    h+="<tr>";
+    for(let k=0;k<7;k++){const d=addDays(start,w*7+k);
+      const cl=[d.getMonth()!==calM?"other":"",ymd(d)===ymd(t)?"today":"",holName(d)?"hol":"",k===0?"sun":k===6?"sat":""].join(" ");
+      h+='<td class="'+cl+'"><span class="n">'+d.getDate()+'</span>'+(by[ymd(d)]||[]).map(x=>'<span class="m'+(x.pay?" p":"")+'" title="'+esc(x.name)+' '+yen(x.amount)+'">'+esc(x.name)+'</span>').join("")+'</td>';}
+    h+="</tr>";
+  }
+  $("cal").innerHTML=h;
+}
+$("pm").onclick=()=>{calM--;if(calM<0){calM=11;calY--;}renderCal();};
+$("nm").onclick=()=>{calM++;if(calM>11){calM=0;calY++;}renderCal();};
+function renderChart(t,P){
+  const days=daysBetween(P.start,P.end)+1, per=free()/Math.max(1,days);
+  const vals=[]; for(let i=0;i<days;i++){const d=addDays(P.start,i);vals.push({d,v:spentBetween(d,d),fut:d>t});}
+  const mx=Math.max(per*1.6,...vals.map(x=>x.v),1);
+  const W=640,H=160,L=6,B=22,bw=(W-L*2)/days;
+  let g="";
+  vals.forEach((x,i)=>{const h=x.v/mx*(H-B-6);g+='<rect x="'+(L+i*bw+1)+'" y="'+(H-B-h)+'" width="'+Math.max(1,bw-2)+'" height="'+h+'" fill="'+(x.v>per?"#b8412f":"#c89a1c")+'" opacity="'+(x.fut?0.2:1)+'"/>';
+    if(i%Math.ceil(days/8)===0||ymd(x.d)===ymd(t)) g+='<text x="'+(L+i*bw+bw/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="11" fill="'+(ymd(x.d)===ymd(t)?"#1f2b25":"#5f6b63")+'">'+(x.d.getMonth()+1)+'/'+x.d.getDate()+'</text>';});
+  const y=H-B-per/mx*(H-B-6);
+  g+='<line x1="'+L+'" x2="'+(W-L)+'" y1="'+y+'" y2="'+y+'" stroke="#24543f" stroke-dasharray="4 4"/>';
+  $("chart").innerHTML=S.income?'<svg viewBox="0 0 '+W+' '+H+'">'+g+'</svg>':'<p class="empty">設定を入れると表示します。</p>';
+  // 今期の履歴（新しい順）
+  const items=S.spend.filter(x=>x.date>=ymd(P.start)&&x.date<ymd(t)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,30);
+  $("history").innerHTML=items.map(x=>{const d=parse(x.date);return '<li><span class="small">'+(d.getMonth()+1)+'/'+d.getDate()+'</span><span class="c">'+esc(x.cat)+'</span><span>'+esc(x.memo||"")+'</span><span class="a">'+yen(x.amount)+'</span><button class="btn del" data-del="'+x.id+'">消す</button></li>';}).join("");
+}
+
+/* 入力 */
+$("cats").innerHTML=CATS.map(c=>'<button data-c="'+c+'" class="'+(c===cat?"on":"")+'">'+c+'</button>').join("");
+$("cats").onclick=e=>{const b=e.target.closest("button");if(!b)return;cat=b.dataset.c;[...$("cats").children].forEach(x=>x.classList.toggle("on",x===b));};
+function addSpend(){
+  const a=Math.round(+$("amt").value); if(!(a>0)){ $("amt").focus(); return; }
+  S.spend.push({id:uid(),date:ymd(today()),amount:a,cat,memo:$("memo").value.trim()});
+  // 1年より前の明細は消して軽くしておく
+  const lim=ymd(addDays(today(),-400)); S.spend=S.spend.filter(x=>x.date>=lim);
+  save(); $("amt").value=""; $("memo").value=""; render();
+}
+$("addBtn").onclick=addSpend;
+$("amt").addEventListener("keydown",e=>{if(e.key==="Enter")addSpend();});
+$("memo").addEventListener("keydown",e=>{if(e.key==="Enter")addSpend();});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b)return;S.spend=S.spend.filter(x=>x.id!==b.dataset.del);save();render();});
+
+/* 設定 */
+$("payday").innerHTML=Array.from({length:31},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'日'+(i===30?"（月末）":"")+'</option>').join("");
+function fillSetup(){
+  $("income").value=S.income||""; $("payday").value=S.payday; $("payShift").value=S.payShift; $("saving").value=S.saving||"";
+  $("fixedRows").innerHTML=S.fixed.map((f,i)=>'<tr><td><input data-i="'+i+'" data-f="name" value="'+esc(f.name||"")+'" placeholder="例：家賃"></td><td><input type="number" inputmode="numeric" data-i="'+i+'" data-f="amount" value="'+(f.amount||"")+'"></td>'+
+    '<td><select data-i="'+i+'" data-f="day">'+Array.from({length:31},(_,k)=>'<option value="'+(k+1)+'"'+(+f.day===k+1?" selected":"")+'>'+(k+1)+'日</option>').join("")+'</select></td>'+
+    '<td><select data-i="'+i+'" data-f="shift"><option value="after"'+(f.shift!=="before"&&f.shift!=="none"?" selected":"")+'>次の平日</option><option value="before"'+(f.shift==="before"?" selected":"")+'>前の平日</option><option value="none"'+(f.shift==="none"?" selected":"")+'>ずらさない</option></select></td>'+
+    '<td class="x"><button class="btn del" data-rm="'+i+'">削除</button></td></tr>').join("")||'<tr><td colspan="5" class="empty">家賃・スマホ・電気・サブスク・カードの引き落としなどを追加してください。</td></tr>';
+  $("sum").innerHTML="手取り "+yen(+S.income||0)+" − 固定費 "+yen(fixedTotal())+" − 貯金 "+yen(+S.saving||0)+" ＝ 自由に使える額 <b>"+yen(free())+"</b>"+(free()<0?'<br><span style="color:var(--red)">固定費と貯金が手取りを上回っています。</span>':"");
+}
+["income","payday","payShift","saving"].forEach(k=>$(k).addEventListener("change",()=>{S[k]=k==="payShift"?$(k).value:+$(k).value||0;save();fillSetup();render();}));
+$("fixedRows").addEventListener("change",e=>{const el=e.target,i=+el.dataset.i,f=el.dataset.f;if(!S.fixed[i])return;S.fixed[i][f]=(f==="amount"||f==="day")?(+el.value||0):el.value;save();fillSetup();render();});
+$("fixedRows").addEventListener("click",e=>{const b=e.target.closest("[data-rm]");if(!b)return;S.fixed.splice(+b.dataset.rm,1);save();fillSetup();render();});
+$("addFixed").onclick=()=>{S.fixed.push({name:"",amount:0,day:27,shift:"after"});save();fillSetup();};
+$("toggleSetup").onclick=()=>{const h=$("setup").classList.toggle("hide");$("toggleSetup").textContent=h?"開く":"閉じる";};
+if(!S.income){$("setup").classList.remove("hide");$("toggleSetup").textContent="閉じる";}
+
+/* バックアップ */
+$("exportBtn").onclick=()=>{const b=new Blob([JSON.stringify({app:"okane",v:1,data:S},null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="okane-backup-"+ymd(today())+".json";document.body.appendChild(a);a.click();a.remove();$("bkMsg").textContent="保存しました";};
+$("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(j.app!=="okane"||!j.data)throw 0;S=Object.assign({income:0,payday:25,payShift:"before",saving:0,fixed:[],spend:[]},j.data);save();fillSetup();render();$("bkMsg").textContent="戻しました";}catch(_){$("bkMsg").textContent="このファイルは読み込めませんでした";}e.target.value="";};
+
+fillSetup(); render();
+setInterval(()=>{const k=ymd(new Date());if(k!==render.k){render.k=k;render();}},60000);
+
+/* 通知の設定（共通部品 push-client.js が使う） */
+const PUSH_APP="okane";
+try{const v=localStorage.getItem("okane-push-time");if(v&&[...$("pushTime").options].some(o=>o.value===v))$("pushTime").value=v;}catch(e){}
+// 送るのは引き落とし日・金額・給料日だけ（手取りの額や使った額は送らない）
+function pushPayload(){const m=+$("pushTime").value;return {minute:m,settings:{minute:m,data:{income:S.income?1:0,payday:S.payday,payShift:S.payShift,fixed:S.fixed.map(f=>({name:f.name,amount:f.amount,day:f.day,shift:f.shift}))}}};}
+function pushDesc(){const m=+$("pushTime").value;return (m>=720?"引き落とし日の前日 ":"引き落とし日の当日 ")+Math.floor(m/60)+":"+pad(m%60)+" に「"+(m>=720?"明日":"今日")+" 家賃 ¥80,000 の引き落とし」のようにお知らせします。給料日の前日にも知らせます。";}
+function pushReady(){return S.fixed.length||S.income?"":"先に設定で固定費（引き落とし）を登録してください。";}
+$("pushTime").onchange=()=>{try{localStorage.setItem("okane-push-time",$("pushTime").value);}catch(e){}pushSync();};
+</script>
+<script src="push-client.js"></script>
+</body>
+</html>
